@@ -1,5 +1,5 @@
 {
-	"name": "josh8k/pilotfreight",
+	"name": "josh8k/pilotfreight-php",
     "description": "Pilot Freight API Client for PHP",
     "require": {
         "guzzlehttp/guzzle": "~6.0",

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s1="http://ws.pilotdelivers.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://tempuri.org/dsReturnStream.xsd" />
+      <s:import namespace="http://ws.pilotdelivers.com/" />
+      <s:import schemaLocation="http://pilotws.pilotdelivers.com/copilotforms/wsforms.asmx?schema=dsReturnStream" namespace="http://tempuri.org/dsReturnStream.xsd" />
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HAWBDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="shawb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="szip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HAWBDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HAWBDocumentResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/dsReturnStream.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HAWBLabel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="shawb" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="eLabelType" type="s1:Label_Types" />
+            <s:element minOccurs="0" maxOccurs="1" name="szip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HAWBLabelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HAWBLabelResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/dsReturnStream.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="dsReturnStream" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any namespace="http://tempuri.org/dsReturnStream.xsd" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.pilotdelivers.com/">
+      <s:simpleType name="Label_Types">
+        <s:restriction base="s:string">
+          <s:enumeration value="Label2x4" />
+          <s:enumeration value="Label4x6" />
+          <s:enumeration value="Label4x6Doctab" />
+          <s:enumeration value="Label8x11" />
+          <s:enumeration value="Label8x11Miramar" />
+          <s:enumeration value="Label8x11TTC" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="HAWBDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:HAWBDocument" />
+  </wsdl:message>
+  <wsdl:message name="HAWBDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:HAWBDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="HAWBLabelSoapIn">
+    <wsdl:part name="parameters" element="tns:HAWBLabel" />
+  </wsdl:message>
+  <wsdl:message name="HAWBLabelSoapOut">
+    <wsdl:part name="parameters" element="tns:HAWBLabelResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetIn" />
+  <wsdl:message name="HelloWorldHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="HAWBDocumentHttpGetIn">
+    <wsdl:part name="shawb" type="s:string" />
+    <wsdl:part name="szip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HAWBDocumentHttpGetOut">
+    <wsdl:part name="Body" element="tns:dsReturnStream" />
+  </wsdl:message>
+  <wsdl:message name="HAWBLabelHttpGetIn">
+    <wsdl:part name="shawb" type="s:string" />
+    <wsdl:part name="eLabelType" type="s:string" />
+    <wsdl:part name="szip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HAWBLabelHttpGetOut">
+    <wsdl:part name="Body" element="tns:dsReturnStream" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpPostIn" />
+  <wsdl:message name="HelloWorldHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="HAWBDocumentHttpPostIn">
+    <wsdl:part name="shawb" type="s:string" />
+    <wsdl:part name="szip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HAWBDocumentHttpPostOut">
+    <wsdl:part name="Body" element="tns:dsReturnStream" />
+  </wsdl:message>
+  <wsdl:message name="HAWBLabelHttpPostIn">
+    <wsdl:part name="shawb" type="s:string" />
+    <wsdl:part name="eLabelType" type="s:string" />
+    <wsdl:part name="szip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HAWBLabelHttpPostOut">
+    <wsdl:part name="Body" element="tns:dsReturnStream" />
+  </wsdl:message>
+  <wsdl:portType name="wsFormsSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HAWBDocument">
+      <wsdl:input message="tns:HAWBDocumentSoapIn" />
+      <wsdl:output message="tns:HAWBDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HAWBLabel">
+      <wsdl:input message="tns:HAWBLabelSoapIn" />
+      <wsdl:output message="tns:HAWBLabelSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="wsFormsHttpGet">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpGetIn" />
+      <wsdl:output message="tns:HelloWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HAWBDocument">
+      <wsdl:input message="tns:HAWBDocumentHttpGetIn" />
+      <wsdl:output message="tns:HAWBDocumentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HAWBLabel">
+      <wsdl:input message="tns:HAWBLabelHttpGetIn" />
+      <wsdl:output message="tns:HAWBLabelHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="wsFormsHttpPost">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpPostIn" />
+      <wsdl:output message="tns:HelloWorldHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HAWBDocument">
+      <wsdl:input message="tns:HAWBDocumentHttpPostIn" />
+      <wsdl:output message="tns:HAWBDocumentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HAWBLabel">
+      <wsdl:input message="tns:HAWBLabelHttpPostIn" />
+      <wsdl:output message="tns:HAWBLabelHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsFormsSoap" type="tns:wsFormsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HAWBDocument">
+      <soap:operation soapAction="http://tempuri.org/HAWBDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HAWBLabel">
+      <soap:operation soapAction="http://tempuri.org/HAWBLabel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsFormsSoap12" type="tns:wsFormsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HAWBDocument">
+      <soap12:operation soapAction="http://tempuri.org/HAWBDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HAWBLabel">
+      <soap12:operation soapAction="http://tempuri.org/HAWBLabel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsFormsHttpGet" type="tns:wsFormsHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HAWBDocument">
+      <http:operation location="/HAWBDocument" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HAWBLabel">
+      <http:operation location="/HAWBLabel" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsFormsHttpPost" type="tns:wsFormsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HAWBDocument">
+      <http:operation location="/HAWBDocument" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HAWBLabel">
+      <http:operation location="/HAWBLabel" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsForms">
+    <wsdl:port name="wsFormsSoap" binding="tns:wsFormsSoap">
+      <soap:address location="http://pilotws.pilotdelivers.com/copilotforms/wsforms.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsFormsSoap12" binding="tns:wsFormsSoap12">
+      <soap12:address location="http://pilotws.pilotdelivers.com/copilotforms/wsforms.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsFormsHttpGet" binding="tns:wsFormsHttpGet">
+      <http:address location="http://pilotws.pilotdelivers.com/copilotforms/wsforms.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsFormsHttpPost" binding="tns:wsFormsHttpPost">
+      <http:address location="http://pilotws.pilotdelivers.com/copilotforms/wsforms.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

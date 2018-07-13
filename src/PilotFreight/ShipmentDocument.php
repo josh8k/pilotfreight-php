@@ -7,33 +7,26 @@ namespace PilotFreight;
  * @class ShipmentDocument
  * @extends AbstractConnection
  */
-class ShipmentDocument extends AbstractConnection
+class ShipmentDocument extends AbstractSoapConnection
 {
-	protected static $requestUrlTpl = "https://copilot2.pilotdelivers.com/HAWBorLabel/HAWB_ZIP.aspx?HAWB=^HAWB^&Zip=^ZIP^&Document=^DOCTYPE^";
+	protected static $wsdlPath = "src/wsdl/shipmentdocument.wsdl";
 	protected static $responseClass = "PilotFreight\Model\ShipmentDocumentResponse";
-	protected static $httpRequestMethod = 'GET';
-	protected static $requestAllowRedirects = false;
+	const TYPE_LABEL4X6 = "Label4x6";
+	const TYPE_LABEL8X11 = "Label8x11";
+	const TYPE_LABEL2X4 = "Label2x4";
 	
-	public function send(Model\Request $request) 
+	protected function response($rawResponse)
 	{
-		
-		// instead of the request knowing how to prep itself, in this case, we need to use the request data to build the request URL
-		// which is essentially the raw Request
-		$this->setRequestUrl($request->getHawb(), $request->getZipcode(), $request->getDocType());
-		$rawRequest = $this->getRequestUrl();
-		$rawResponse = $this->request($rawRequest);
-		
-		// now kick the response back to being handled the normal way
-		return $this->response($rawResponse);
+		// we need to overwrite this and ignore the passed rawResponse
+		// we will need to retrieve the raw soap data
+		$rawSoapResponse = $this->getLastSoapResponse();
+		if (!is_null(static::$responseClass)) {
+			// instead of passing it the PHP parsed SOAP client response we need to pass it the raw soap response
+			$responseClass = static::$responseClass;
+			return $responseClass::create(['body' => $rawSoapResponse]);
+		}
+		return $rawSoapResponse;
 	}
-	
-	protected function setRequestUrl($hawb, $zipcode, $doctype)
-	{
-		$this->requestUrl = str_replace(["^HAWB^", "^ZIP^", "^DOCTYPE^"], [$hawb, $zipcode, $doctype], static::$requestUrlTpl);
-	}
-	
-	// overwrite the headers to not add anything
-	protected function prepHeaders() {}
 } // END class 
 
 ?>

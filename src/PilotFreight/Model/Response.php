@@ -1,25 +1,11 @@
 <?php
 namespace PilotFreight\Model;
 
-class Response
+class Response extends AbstractResponse
 {
 	protected $rawResponse = null;
 	protected $response = [];
 	public function __construct() {}
-	
-	public function setRawResponse($raw_response_data)
-	{
-		$this->rawResponse = $raw_response_data;
-		return $this;
-	}
-	
-	// raw_response_data is array w/ statusCode and body
-	public static function create(array $raw_response_data)
-	{
-		$obj = new static();
-		$obj->setRawResponse($raw_response_data)->parse();
-		return $obj;
-	}
 	
 	protected function parse()
 	{
@@ -33,11 +19,6 @@ class Response
 		// however, in other cases, like Tracking, it's not, so that can be handled locally
 		$this->response = json_decode($this->rawResponse['body'], true);
 	}	
-	
-	public function get()
-	{
-		return $this->response;
-	}
 	
 	public function getStatusCode()
 	{

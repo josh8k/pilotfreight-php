@@ -4,7 +4,7 @@ namespace PilotFreight;
 
 use GuzzleHttp;
 
-abstract class AbstractConnection
+abstract class AbstractConnection implements ConnectionInterface
 {
 	
 	protected $auth = null;

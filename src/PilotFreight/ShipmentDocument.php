@@ -9,11 +9,17 @@ namespace PilotFreight;
  */
 class ShipmentDocument extends AbstractSoapConnection
 {
-	protected static $wsdlPath = "src/wsdl/shipmentdocument.wsdl";
+	protected static $wsdlPath;
 	protected static $responseClass = "PilotFreight\Model\ShipmentDocumentResponse";
 	const TYPE_LABEL4X6 = "Label4x6";
 	const TYPE_LABEL8X11 = "Label8x11";
 	const TYPE_LABEL2X4 = "Label2x4";
+	
+	public function __construct(Model\Auth $auth)
+	{
+		static::$wsdlPath = dirname ( dirname ( __FILE__ ) ) . DIRECTORY_SEPARATOR .  "wsdl" . DIRECTORY_SEPARATOR . "shipmentdocument.wsdl";
+		parent::__construct($auth);
+	}
 	
 	protected function response($rawResponse)
 	{

@@ -12,6 +12,10 @@ class ShipmentDocumentRequest extends Request
 		"callname" => false
 	];
 	
+	const TYPE_LABEL4X6 = "Label4x6";
+	const TYPE_LABEL8X11 = "Label8x11";
+	const TYPE_LABEL2X4 = "Label2x4";
+	
 	public function prep(Auth $auth)
 	{
 		

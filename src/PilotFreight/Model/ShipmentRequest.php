@@ -73,13 +73,34 @@ class ShipmentRequest extends Request
 		"scheduleblines" => false,
 		"shipmentcustomerinfo" => false
 	];
+	
+	// set some constants
+	const PAYMENT_TYPE_THIRD_PARTY = 'T';
+	const PAYMENT_TYPE_PREPAID = 'P';
+	const PAYMENT_TYPE_COLLECT = 'C';
+	
+	const SERVICE_TYPE_BASIC = 'BA';
+	const SERVICE_TYPE_DELUXE = 'DE';
+	const SERVICE_TYPE_PREMIER = 'PR';
+	const SERVICE_TYPE_STANDARD_ONE = 'S1';
+	const SERVICE_TYPE_STANDARD_TWO = 'S2';
+	const SERVICE_TYPE_FIRST_FLIGHT = 'NF';
+	const SERVICE_TYPE_NEXT_AM = '18';
+	const SERVICE_TYPE_NEXT_PM = '24';
+	const SERVICE_TYPE_TWO_DAY = '48';
+	const SERVICE_TYPE_THREE_DAY = '66';
+	const SERVICE_TYPE_ECONOMY = '72';
+	
 	public function prep(Auth $auth)
 	{
 		// first recursively go through and remove all "false" data
 		// and turn into array
 		
 		// add the auth info
-		$this->setLocationId($auth->getLocationId())->setTariffHeaderId($auth->getTariffHeaderId())->setAddressId($auth->getAddressId())->setControlStation($auth->getControlStation());
+		$this->setLocationId($auth->getLocationId())
+			->setTariffHeaderId($auth->getTariffHeaderId())
+			->setAddressId($auth->getAddressId())
+			->setControlStation($auth->getControlStation());
 		
 		$data = $this->toArray(true); // true means that it "prunes" it as it goes
 		// then, json encode it

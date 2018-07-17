@@ -21,12 +21,12 @@ class ShipmentDocumentResponse extends AbstractResponse
 	
 	public function getDocument()
 	{
-		return ($this->get() != null ? $this->get()->DataStream_Byte : false);
+		return ($this->get() != null ? (string)$this->get()->DataStream_Byte : false);
 	}
 	
 	public function getDocumentLength()
 	{
-		return ($this->get() != null ? $this->get()->DataLength : false);
+		return ($this->get() != null ? (int)$this->get()->DataLength : false);
 	}
 }
 ?>

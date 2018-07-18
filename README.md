@@ -7,10 +7,10 @@ Install using composer. However, for now, you need to do it by adding the reposi
 
 ```
 "repositories": [
-{
-	"type": "vcs",
-	 "url": "https://github.com/josh8k/pilotfreight-php"
- }
+	{
+		"type": "vcs",
+	 	"url": "https://github.com/josh8k/pilotfreight-php"
+	 }
  ]
 ```
 

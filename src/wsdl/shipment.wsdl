@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://tempuri.org/dsShipment.xsd"/>
+      <s:import namespace="http://tempuri.org/dsVoid.xsd"/>
+      <s:import schemaLocation="http://ws3.pilotdelivers.com/webservice/wsshipments/Shipment.asmx?schema=dsShipment" namespace="http://tempuri.org/dsShipment.xsd"/>
+      <s:import schemaLocation="http://ws3.pilotdelivers.com/webservice/wsshipments/Shipment.asmx?schema=dsVoid" namespace="http://tempuri.org/dsVoid.xsd"/>
+      <s:element name="GetNewShipment">
+        <s:complexType/>
+      </s:element>
+      <s:element name="GetNewShipmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewShipmentResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/dsShipment.xsd"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewVoid">
+        <s:complexType/>
+      </s:element>
+      <s:element name="GetNewVoidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewVoidResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/dsVoid.xsd"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Void">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsVoid">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/dsVoid.xsd"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VoidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VoidResult" type="tns:PilotShipmentResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PilotShipmentResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsError" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="dsResult">
+            <s:complexType>
+              <s:sequence>
+                <s:any namespace="http://tempuri.org/dsShipment.xsd"/>
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Save">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsShip">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/dsShipment.xsd"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveResult" type="tns:PilotShipmentResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDraft">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsShip">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/dsShipment.xsd"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveDraftResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveDraftResult" type="tns:PilotShipmentResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetNewShipmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewShipment"/>
+  </wsdl:message>
+  <wsdl:message name="GetNewShipmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewShipmentResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetNewVoidSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewVoid"/>
+  </wsdl:message>
+  <wsdl:message name="GetNewVoidSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewVoidResponse"/>
+  </wsdl:message>
+  <wsdl:message name="VoidSoapIn">
+    <wsdl:part name="parameters" element="tns:Void"/>
+  </wsdl:message>
+  <wsdl:message name="VoidSoapOut">
+    <wsdl:part name="parameters" element="tns:VoidResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SaveSoapIn">
+    <wsdl:part name="parameters" element="tns:Save"/>
+  </wsdl:message>
+  <wsdl:message name="SaveSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SaveDraftSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveDraft"/>
+  </wsdl:message>
+  <wsdl:message name="SaveDraftSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDraftResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ShipmentServiceSoap">
+    <wsdl:operation name="GetNewShipment">
+      <wsdl:input message="tns:GetNewShipmentSoapIn"/>
+      <wsdl:output message="tns:GetNewShipmentSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewVoid">
+      <wsdl:input message="tns:GetNewVoidSoapIn"/>
+      <wsdl:output message="tns:GetNewVoidSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="Void">
+      <wsdl:input message="tns:VoidSoapIn"/>
+      <wsdl:output message="tns:VoidSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input message="tns:SaveSoapIn"/>
+      <wsdl:output message="tns:SaveSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDraft">
+      <wsdl:input message="tns:SaveDraftSoapIn"/>
+      <wsdl:output message="tns:SaveDraftSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ShipmentServiceSoap" type="tns:ShipmentServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetNewShipment">
+      <soap:operation soapAction="http://tempuri.org/GetNewShipment" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewVoid">
+      <soap:operation soapAction="http://tempuri.org/GetNewVoid" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Void">
+      <soap:operation soapAction="http://tempuri.org/Void" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/Save" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDraft">
+      <soap:operation soapAction="http://tempuri.org/SaveDraft" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ShipmentServiceSoap12" type="tns:ShipmentServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetNewShipment">
+      <soap12:operation soapAction="http://tempuri.org/GetNewShipment" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewVoid">
+      <soap12:operation soapAction="http://tempuri.org/GetNewVoid" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Void">
+      <soap12:operation soapAction="http://tempuri.org/Void" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap12:operation soapAction="http://tempuri.org/Save" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDraft">
+      <soap12:operation soapAction="http://tempuri.org/SaveDraft" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ShipmentService">
+    <wsdl:port name="ShipmentServiceSoap" binding="tns:ShipmentServiceSoap">
+      <soap:address location="http://ws3.pilotdelivers.com/webservice/wsshipments/Shipment.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="ShipmentServiceSoap12" binding="tns:ShipmentServiceSoap12">
+      <soap12:address location="http://ws3.pilotdelivers.com/webservice/wsshipments/Shipment.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

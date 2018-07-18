@@ -50,11 +50,11 @@ abstract class AbstractSoapConnection implements ConnectionInterface
 	
 	protected function response($rawResponse)
 	{
-		
+		// rawresponse should be an object. if not, should be overwritten
 		// in the default version, it just returns the full contents fo the SOAP reply
 		if (!is_null(static::$responseClass)) {
 			$responseClass = static::$responseClass;
-			return $responseClass::create($rawResponse);
+			return $responseClass::create(['body' => $rawResponse]);
 		}
 		
 		return $this->getLastResponse(); // by default

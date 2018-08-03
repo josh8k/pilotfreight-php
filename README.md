@@ -3,7 +3,6 @@ PHP Client for Pilot Freight REST API
 
 # TODO
 1. Documentation
-2. Error Handling
-3. Commenting
+2. Improved Error Handling
 
 last updated: 6-28-18

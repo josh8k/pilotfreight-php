@@ -44,5 +44,5 @@ $auth = new \PilotFreight\Model\Auth;
 ## TODO
 1. Documentation
 3. Commenting
-
+2. Improved Error Handling
 last updated: 7-18-18

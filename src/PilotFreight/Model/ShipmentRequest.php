@@ -80,6 +80,7 @@ class ShipmentRequest extends Request
 	const PAYMENT_TYPE_COLLECT = 'C';
 	
 	const SERVICE_TYPE_BASIC = 'BA';
+	const SERVICE_TYPE_BASIC_SIG_RELEASE = 'BR';
 	const SERVICE_TYPE_DELUXE = 'DE';
 	const SERVICE_TYPE_PREMIER = 'PR';
 	const SERVICE_TYPE_STANDARD_ONE = 'S1';

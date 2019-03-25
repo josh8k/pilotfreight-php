@@ -1,12 +1,18 @@
 <?php
-	
 namespace PilotFreight;
 
 use GuzzleHttp;
 
+/**
+ * Contains most of the code for handling the REST connections
+ * @author josh8k
+ */
 abstract class AbstractConnection implements ConnectionInterface
 {
-	
+	/**
+	* It's important for the child classes to declare their own responseClass, requestUrl. 
+	* The other instance & static variables needed will be clear based on the individual requirements of the API call
+	*/
 	protected $auth = null;
 	protected $rawRequest = null;
 	protected $rawResponse = null;
@@ -17,11 +23,19 @@ abstract class AbstractConnection implements ConnectionInterface
 	protected static $requestAllowRedirects = true;
 	protected $headers = [];
 	
+	/**
+	* @param Model\Auth $auth Fully constructed Mode\Auth object
+	*/
 	public function __construct(Model\Auth $auth)
 	{
 		$this->auth = $auth;
 	}
 	
+	/**
+	* @param Model\Request $request Specific request object for the desired call
+	* @return Model\Response Will return specific response object based on the request, otherwise, the raw response
+	* @todo Better standardize this response. Maybe an \Exception instead?
+	*/
 	public function send(Model\Request $request) 
 	{
 		$rawRequest = $request->prep($this->auth);
@@ -31,22 +45,37 @@ abstract class AbstractConnection implements ConnectionInterface
 		return $this->response($rawResponse);
 	}
 	
+	/**
+	* Sets standard Headers
+	*/
 	protected function prepHeaders()
 	{
 		$this->addHeader('Accept', 'application/json');
 		$this->addHeader('Content-Type', 'application/json');
 	}
 	
+	/**
+	* @return array Returns array of headers
+	*/
 	protected function formatHeaders()
 	{
 		return $this->headers;
 	}
 	
+	/**
+	* @param string $headerName
+	* @param mixed $headerValue Scalar value
+	*/
 	protected function addHeader($headerName, $headerValue)
 	{
 		$this->headers[$headerName] = $headerValue;
 	}
 	
+	/**
+	* @param string $rawRequest Receives raw request, usually either XML or JSON, depending on the API call to Pilot
+	* @return array Returns the raw response array
+	* @throws \Exception
+	*/
 	protected function request($rawRequest)
 	{
 		$this->rawRequest = $rawRequest;
@@ -84,6 +113,10 @@ abstract class AbstractConnection implements ConnectionInterface
 		return $this->rawResponse;
 	}
 	
+	/**
+	* @param array $rawResponse The raw response array that's been set in the request method
+	* @return mixed Usually will return Model\Response child class but may also return an array of the last rawResponse
+	*/
 	protected function response($rawResponse)
 	{
 		if (!is_null(static::$responseClass)) {

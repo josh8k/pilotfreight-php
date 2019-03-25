@@ -2,6 +2,9 @@
 namespace PilotFreight\Model;
 use SoapVar;
 
+/**
+ * Primary request object for Void SOAP Ccall
+ */
 class VoidRequest extends Request
 {
 	protected static $xmlns = "http://tempuri.org/";
@@ -10,6 +13,10 @@ class VoidRequest extends Request
 		'callname' => false
 	];
 	
+	/**
+	 * @param Auth $auth
+     * @return object Returns object for SOAP call w/ appropriate namespace set
+	*/
 	public function prep(Auth $auth)
 	{
 		

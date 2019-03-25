@@ -2,6 +2,9 @@
 
 namespace PilotFreight\Model;
 
+/**
+ * @author josh8k
+ */
 class Auth extends Model
 {
 	

@@ -1,6 +1,10 @@
 <?php
 namespace PilotFreight\Model;
 
+/**
+ * Primary request object for Shipment call
+ * Contains important constants for use in making the Shipment call
+ */
 class ShipmentRequest extends Request
 {
 	protected $data = [
@@ -92,6 +96,10 @@ class ShipmentRequest extends Request
 	const SERVICE_TYPE_THREE_DAY = '66';
 	const SERVICE_TYPE_ECONOMY = '72';
 	
+	/**
+	 * @param Auth $auth
+	 * @return string Returns json object encoded as string
+	 */
 	public function prep(Auth $auth)
 	{
 		// first recursively go through and remove all "false" data

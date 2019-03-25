@@ -1,6 +1,9 @@
 <?php
 namespace PilotFreight\Model;
 
+/**
+ * Primary Rating call request object
+*/
 class RatingRequest extends Request
 {
 	protected $data = [
@@ -36,6 +39,11 @@ class RatingRequest extends Request
 		"isinternational" => false
 	];
 	
+	/**
+	 * Overriding default method
+	 * @param Auth $auth
+	 * @return string Returns a json object encodeed as a string for the request
+	 */	
 	public function prep(Auth $auth)
 	{
 		

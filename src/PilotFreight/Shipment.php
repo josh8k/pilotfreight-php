@@ -2,16 +2,20 @@
 namespace PilotFreight;
 /**
  * Shipment
+ * Used to actually generate a shipment within Pilot's internal system and generate a HAWB/tracking bumber
  *
- * @package PilotFreight
- * @class Shipment
- * @extends AbstractConnection
+ * @author josh8k
  */
 class Shipment extends AbstractConnection
 {
 	protected $requestUrl = "https://www.pilotssl.com/pilotapi/v1/Shipments";
 	protected static $responseClass = "PilotFreight\Model\ShipmentResponse";
 	
+	/**
+	* Overrides parent
+	* @return void
+	*
+	*/
 	protected function prepHeaders()
 	{
 		parent::prepHeaders();
@@ -21,6 +25,5 @@ class Shipment extends AbstractConnection
 		}
 	}
 	
-} // END class 
-
+}
 ?>

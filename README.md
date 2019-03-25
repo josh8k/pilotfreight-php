@@ -118,5 +118,5 @@ $response = $trackResult->get();
 
 ## TODO
 1. More Examples
-
+2. Improved Error Handling
 last updated: 7-18-18

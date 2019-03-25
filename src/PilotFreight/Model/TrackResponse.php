@@ -1,9 +1,15 @@
 <?php
 namespace PilotFreight\Model;
 
+/**
+ * Primary response object for Track call
+ */
 class TrackResponse extends Response
 {
-	
+	/**
+	 * Contains code for parsing through the XML of the track response
+	 * @return void But sets the response instance variables for later use
+	 */
 	protected function parse()
 	{
 		// we know that for the track method, we should be received XML back.
@@ -21,9 +27,6 @@ class TrackResponse extends Response
 			// going to do something very simple here and convert each shipment into an associative array
 			$this->response[] = json_decode(json_encode($shipment), true);
 		}
-	}
-	
-	// then have some getters
-		
+	}	
 }
 ?>

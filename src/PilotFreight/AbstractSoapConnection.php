@@ -3,6 +3,10 @@
 namespace PilotFreight;
 use SoapClient;
 
+/**
+* Contains the code for the API connection if it's SOAP related, like the void call
+* @author josh8k
+*/
 abstract class AbstractSoapConnection implements ConnectionInterface
 {
 	
@@ -14,13 +18,20 @@ abstract class AbstractSoapConnection implements ConnectionInterface
 	protected static $responseClass = null;
 	protected static $callName = null;
 	
-	
+	/**
+	* @param Model\Auth $auth Fully constructed Mode\Auth object
+	*/
 	public function __construct(Model\Auth $auth)
 	{
 		$this->auth = $auth;
 		$this->soapClient = new SoapClient(static::$wsdlPath, ['trace' => 1, 'cache_wsdl' => WSDL_CACHE_NONE]);
 	}
 	
+	/**
+	* @param Model\Request $request Specific request object for the desired call
+	* @return Model\Response Will return specific response object based on the request, otherwise, the raw response
+	* @todo Better standardize this response. Maybe an \Exception instead?
+	*/
 	public function send(Model\Request $request) 
 	{
 		// FOR the soap connection, we're going to assume that the REQUEST will specify what the method being called is. but if not, then there can be a default
@@ -33,6 +44,12 @@ abstract class AbstractSoapConnection implements ConnectionInterface
 		return $this->response($rawResponse);
 	}
 	
+	/**
+	* @param array $requestParams The raw params array that need to sent in the soap call
+	* @param string $callName The name of the SOAP method call
+	* @return array Returns the raw response array
+	* @throws \Exception
+	*/
 	protected function request($requestParams, $callName)
 	{
 		$this->rawRequest = $requestParams;
@@ -48,6 +65,10 @@ abstract class AbstractSoapConnection implements ConnectionInterface
 		return $this->rawResponse;
 	}
 	
+	/**
+	* @param array $rawResponse The raw response array that's been set in the request method
+	* @return mixed Usually will return Model\Response child class but may also return an array of the last rawResponse
+	*/
 	protected function response($rawResponse)
 	{
 		// rawresponse should be an object. if not, should be overwritten

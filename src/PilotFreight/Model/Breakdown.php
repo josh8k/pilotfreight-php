@@ -1,5 +1,6 @@
 <?php
 namespace PilotFreight\Model;
+
 class Breakdown extends Model
 {
 	protected $data = [

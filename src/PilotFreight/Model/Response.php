@@ -1,12 +1,19 @@
 <?php
 namespace PilotFreight\Model;
 
+/**
+ * Primary response class. Will usually be accessed by child classes
+*/
 class Response extends AbstractResponse
 {
 	protected $rawResponse = null;
 	protected $response = [];
 	public function __construct() {}
-	
+
+	/**
+	 * Parse the response that comes in and is already set in the rawResponse instance variable
+	 * @return void But sets the response array into the response instance variable for access later
+	 */
 	protected function parse()
 	{
 		if (substr($this->rawResponse['statusCode'], 0, 1) != "2")

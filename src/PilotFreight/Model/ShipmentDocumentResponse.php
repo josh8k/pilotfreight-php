@@ -2,6 +2,10 @@
 namespace PilotFreight\Model;
 use SimpleXMLElement;
 
+/**
+ * Handles the response from a ShipmentDocument call
+ * A little more heavy lifting required to parse the response from this SOAP call
+ */
 class ShipmentDocumentResponse extends AbstractResponse
 {
 	protected function parse()

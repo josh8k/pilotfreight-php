@@ -2,6 +2,12 @@
 
 namespace PilotFreight\Model;
 
+/**
+ * Main data storage for request objects
+ * The child classes will define the $data instance variable with their specific needs
+ * Not going to put much commenting into the child classes because it's relatively straightforward
+ * @author josh8k
+ */
 class Model
 {
 	protected $data = [];
